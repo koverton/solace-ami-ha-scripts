@@ -1,0 +1,13 @@
+home
+enable
+configure
+
+! Create our admin user
+create username admin password __ADMINPASS__ cli global-access-level admin
+exit
+
+! Set the router-name but defer so we can also scale it
+router-name __THIS_NAME__
+! reboot into monitor mode
+! end
+! reload default-config monitoring-node

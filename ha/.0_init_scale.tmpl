@@ -1,0 +1,17 @@
+home
+enable
+configure
+
+! Create our admin user
+create username admin password __ADMINPASS__ cli global-access-level admin
+exit
+
+! Set the router-name but defer so we can also scale it
+router-name __THIS_NAME__ defer
+
+! shutdown msg-backbone and spool
+service msg-backbone shutdown
+hardware message-spool shutdown
+! Set scaling
+system scaling max-connections 1000
+! This causes a reload

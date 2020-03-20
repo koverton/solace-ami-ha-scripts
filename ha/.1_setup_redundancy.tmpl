@@ -1,0 +1,31 @@
+home
+enable
+configure
+__MONITOR_CMT__ no service msg-backbone shutdown
+__MONITOR_CMT__ hardware message-spool shutdown
+
+redundancy
+shutdown
+switchover-mechanism hostlist
+group
+create node __PRIMARY_NAME__
+connect-via __PRIMARY_IP__
+node-type   message-routing-node
+exit
+create node __BACKUP_NAME__
+connect-via __BACKUP_IP__
+node-type   message-routing-node
+exit
+create node __MONITOR_NAME__
+connect-via __MONITOR_IP__
+node-type   monitor-node
+exit
+exit
+authentication
+pre-shared-key key __REDUNDANCYPASS__
+exit
+! comment out active-standby-role if we are monitor
+__MONITOR_CMT__ active-standby-role __ROLE__
+no shutdown
+home
+show redundancy group

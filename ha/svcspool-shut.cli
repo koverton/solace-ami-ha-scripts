@@ -1,0 +1,6 @@
+home
+enable
+configure
+service msg-backbone shutdown
+hardware message-spool shutdown
+home
